@@ -6,13 +6,18 @@ import {
   AddTodosDTO,
   AssignDTOBody,
   AssignDTOParam,
+  ListValidate,
   SetComplete,
 } from "./todos.dto";
 import { Todo } from "./todos.entity";
 
-export const list = async (req: Request, res: Response, next: NextFunction) => {
+export const list = async (
+  req: TypedRequest<any, ListValidate, any>,
+  res: Response,
+  next: NextFunction
+) => {
   const user = req.user!;
-  const checkCompleted = req.query.showCompleted == "true" ? true : false;
+  const checkCompleted = req.query.showCompleted;
   const list = await todosService.find(user.id!, checkCompleted);
   res.json(list);
 };

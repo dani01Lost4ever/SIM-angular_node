@@ -1,4 +1,4 @@
-import { Type } from "class-transformer";
+import { Transform, Type } from "class-transformer";
 import {
   IsBoolean,
   IsDate,
@@ -7,6 +7,7 @@ import {
   IsString,
   isMongoId,
 } from "class-validator";
+import { isBoolean } from "lodash";
 
 export class AddTodosDTO {
   @IsString()
@@ -34,4 +35,18 @@ export class AssignDTOParam {
 export class AssignDTOBody {
   @IsMongoId()
   userId: string;
+}
+
+export class ListValidate {
+  @IsBoolean()
+  @Transform(({ value }) => {
+    if (value.toLowerCase() == "true") {
+      return true;
+    }
+    if (value.toLowerCase() == "false") {
+      return false;
+    }
+    return value;
+  })
+  showCompleted: boolean;
 }

@@ -6,6 +6,7 @@ import {
   AddTodosDTO,
   AssignDTOBody,
   AssignDTOParam,
+  ListValidate,
   SetComplete,
 } from "./todos.dto";
 import {
@@ -15,16 +16,28 @@ import {
   setComplete,
   setUncomplete,
 } from "./todos.controller";
+import { loginValidator } from "../../utils/loginValidator.middleware";
 
 const router = Router();
 
 router.use(isAuthenticated);
-router.get("/", list);
+router.get("/", validate(ListValidate, "query"), list);
 router.post("/", validate(AddTodosDTO, "body"), add);
-router.patch("/:id/check", validate(SetComplete, "params"), setComplete);
-router.patch("/:id/uncheck", validate(SetComplete, "params"), setUncomplete);
+router.patch(
+  "/:id/check",
+  loginValidator("one"),
+  validate(SetComplete, "params"),
+  setComplete
+);
+router.patch(
+  "/:id/uncheck",
+  loginValidator("one"),
+  validate(SetComplete, "params"),
+  setUncomplete
+);
 router.post(
   "/:id/assignTo",
+  loginValidator("two"),
   validate(AssignDTOParam, "params"),
   validate(AssignDTOBody, "body"),
   assignTo
