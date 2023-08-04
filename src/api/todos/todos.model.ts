@@ -24,4 +24,13 @@ todoSchema.set("toJSON", {
   },
 });
 
+todoSchema.set("toObject", {
+  virtuals: true,
+  transform: (_, ret) => {
+    delete ret._id;
+    delete ret.__v;
+    return ret;
+  },
+});
+
 export const Todos = mongoose.model<Todo>("Todo", todoSchema);

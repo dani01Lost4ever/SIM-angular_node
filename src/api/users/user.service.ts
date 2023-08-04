@@ -29,5 +29,10 @@ export class UserService {
 
     return newUser;
   }
+
+  async list() {
+    const list = await UserModel.find({});
+    return list;
+  }
 }
 export default new UserService();

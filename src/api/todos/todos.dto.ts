@@ -26,3 +26,12 @@ export class SetComplete {
   @IsMongoId()
   id: string;
 }
+
+export class AssignDTOParam {
+  @IsMongoId()
+  id: string;
+}
+export class AssignDTOBody {
+  @IsMongoId()
+  userId: string;
+}

@@ -4,19 +4,28 @@ import { Todos as TodosModel } from "./todos.model";
 import { NotFoundError } from "../../errors/not-found";
 
 export class TodosService {
-  async find(userId: string): Promise<Todo[]> {
-    return TodosModel.find({
+  // async find(userId: string): Promise<Todo[]> {
+  //   return TodosModel.find({
+  //     $or: [{ createdBy: userId }, { assignedTo: userId }],
+  //   }).populate("createdBy");
+  // }
+  async find(userId: string, showCompleted: boolean): Promise<Todo[]>;
+  async find(userId: string): Promise<Todo[]>;
+  async find(userId: string, showCompleted: boolean = false) {
+    const now = new Date();
+    const filter: any = {
       $or: [{ createdBy: userId }, { assignedTo: userId }],
-    }).populate("createdBy");
+    };
+
+    if (!showCompleted) {
+      filter.completed = false;
+    }
+
+    const list = await TodosModel.find(filter)
+      .populate("createdBy assignedTo")
+      .sort({ dueDate: 1, createdAt: 1 });
+    return list;
   }
-
-  //   async getById(id: string, userId: string): Promise<Todo | null> {
-  //     return this._getById(id, userId);
-  //   }
-
-  //   private async _getById(id: string, userId: string) {
-  //     return TodosModel.findOne({ _id: id, user: userId }).populate("todos");
-  //   }
 
   async add(todo: Todo, createdBy: string): Promise<Todo> {
     const newTodo = await TodosModel.create({ ...todo, createdBy: createdBy });
@@ -35,16 +44,8 @@ export class TodosService {
     }
     assign(item, data);
     await item.save();
-    return item;
+    return this._getById(id) as Promise<Todo>;
   }
-
-  //   async remove(id: string, userId: string): Promise<void> {
-  //     const item = await this._getById(id, userId);
-  //     if (!item) {
-  //       throw new NotFoundError();
-  //     }
-  //     await item.deleteOne();
-  //   }
 }
 
 export default new TodosService();

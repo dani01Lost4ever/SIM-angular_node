@@ -7,13 +7,17 @@ import { TypedRequest } from "./typed-request.interface";
 export function validate<T extends object>(
   type: new () => T,
   origin: "body"
-): (req: TypedRequest<T>, res: Response, next: NextFunction) => Promise<void>;
+): (
+  req: TypedRequest<T, any, any>,
+  res: Response,
+  next: NextFunction
+) => Promise<void>;
 
 export function validate<T extends object>(
   type: new () => T,
   origin: "query"
 ): (
-  req: TypedRequest<any, T>,
+  req: TypedRequest<any, T, any>,
   res: Response,
   next: NextFunction
 ) => Promise<void>;
@@ -29,14 +33,18 @@ export function validate<T extends object>(
 
 export function validate<T extends object>(
   type: new () => T
-): (req: TypedRequest<T>, res: Response, next: NextFunction) => Promise<void>;
+): (
+  req: TypedRequest<T, any, any>,
+  res: Response,
+  next: NextFunction
+) => Promise<void>;
 
 export function validate<T extends object>(
   type: new () => T,
   origin: "body" | "query" | "params" = "body"
 ) {
   return async (
-    req: TypedRequest<any, any>,
+    req: TypedRequest<any, any, any>,
     res: Response,
     next: NextFunction
   ) => {
