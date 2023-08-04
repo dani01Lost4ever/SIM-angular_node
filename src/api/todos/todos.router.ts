@@ -17,12 +17,13 @@ import {
   setUncomplete,
 } from "./todos.controller";
 import { loginValidator } from "../../utils/loginValidator.middleware";
+import { assignedToValidator } from "../../utils/assignedTo.middleware";
 
 const router = Router();
 
 router.use(isAuthenticated);
 router.get("/", validate(ListValidate, "query"), list);
-router.post("/", validate(AddTodosDTO, "body"), add);
+router.post("/", validate(AddTodosDTO, "body"), assignedToValidator(), add);
 router.patch(
   "/:id/check",
   loginValidator("one"),
@@ -38,6 +39,7 @@ router.patch(
 router.post(
   "/:id/assignTo",
   loginValidator("two"),
+  assignedToValidator(),
   validate(AssignDTOParam, "params"),
   validate(AssignDTOBody, "body"),
   assignTo
