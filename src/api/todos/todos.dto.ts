@@ -5,9 +5,10 @@ import {
   IsMongoId,
   IsOptional,
   IsString,
-  isMongoId,
+  Validate,
 } from "class-validator";
-import { isBoolean } from "lodash";
+import { IsUserId } from "../../utils/customs.validator";
+import { ObjectId } from "mongoose";
 
 export class AddTodosDTO {
   @IsString()
@@ -20,6 +21,7 @@ export class AddTodosDTO {
 
   @IsMongoId()
   @IsOptional()
+  @Validate(IsUserId)
   assignedTo: string;
 }
 
@@ -32,7 +34,9 @@ export class AssignDTOParam {
   @IsMongoId()
   id: string;
 }
+
 export class AssignDTOBody {
+  @Validate(IsUserId)
   @IsMongoId()
   userId: string;
 }
