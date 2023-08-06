@@ -3,6 +3,7 @@ import { NotFoundError } from "../errors/not-found";
 import { Todos } from "../api/todos/todos.model";
 import { TypedRequest } from "./typed-request.interface";
 import { CustomError } from "../errors";
+import { ValidationError } from "../errors/validationError";
 
 export const loginValidator = (type: "two" | "one" = "two") => {
   return async (
@@ -29,8 +30,19 @@ export const loginValidator = (type: "two" | "one" = "two") => {
       if (todo) {
         next();
       } else {
-        res.status(404);
-        res.send("You cannot edit this Todo or this Todo does not exist.");
+        //OLD
+        // res.status(404);
+        // res.send("You cannot edit this Todo or this Todo does not exist.");
+        throw new ValidationError([
+          {
+            property: "Todo",
+            constraints: {
+              notexist:
+                "You cannot edit this Todo or this Todo does not exist.",
+            },
+            value: todoId,
+          },
+        ]);
       }
     } catch (err) {
       next(err);
