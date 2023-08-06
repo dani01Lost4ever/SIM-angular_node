@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import { TypedRequest } from "../../utils/typed-request.interface";
-import { NotFoundError } from "../../errors/not-found";
 import todosService from "./todos.service";
 import {
   AddTodosDTO,
