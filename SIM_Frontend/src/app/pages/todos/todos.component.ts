@@ -1,33 +1,53 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subject, map, BehaviorSubject, switchMap, catchError, of } from 'rxjs';
+import {
+  Subject,
+  map,
+  BehaviorSubject,
+  switchMap,
+  catchError,
+  of,
+  combineLatest,
+} from 'rxjs';
 import { TodosService } from 'src/app/services/todos.service';
-
+import { merge } from 'rxjs';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css'],
 })
 export class TodosComponent implements OnInit, OnDestroy {
-  public quantity: number = 0;
-  public addedItem: string[] = [];
-
-  todosPerPage = 24;
+  constructor(private todosSrv: TodosService) {}
   private destryed$ = new Subject<void>();
-
-  constructor(
-    private todosSrv: TodosService,
-    private fb: FormBuilder,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
-
   currentPage$ = new BehaviorSubject<number>(1);
 
+  todosPerPage = 24;
+  showCompleted: boolean = false;
+
+  // todos$ = this.currentPage$.pipe(
+  //   switchMap((currentPage) =>
+  //     this.todosSrv.list(this.showCompleted).pipe(
+  //       map((todos) => {
+  //         const startIndex = (currentPage - 1) * this.todosPerPage;
+  //         const endIndex = startIndex + this.todosPerPage;
+  //         return todos.slice(startIndex, endIndex);
+  //       }),
+  //       catchError((err) => of([]))
+  //     )
+  //   )
+  // );
   todos$ = this.currentPage$.pipe(
     switchMap((currentPage) =>
-      this.todosSrv.list().pipe(
+      this.todosSrv.list(this.showCompleted).pipe(
         map((todos) => {
           const startIndex = (currentPage - 1) * this.todosPerPage;
           const endIndex = startIndex + this.todosPerPage;
@@ -37,26 +57,29 @@ export class TodosComponent implements OnInit, OnDestroy {
       )
     )
   );
+  onFlexSwitchChange(event: any) {
+    this.showCompleted = event.target.checked;
+    this.currentPage$.next(this.currentPage$.value); // Force refresh.
+    console.log(this.showCompleted);
+  }
 
   previousPage() {
     if (this.currentPage$.value > 1) {
       this.currentPage$.next(this.currentPage$.value - 1);
+      console.log('trigger_PreviousPage');
     }
   }
 
   nextPage() {
     const currentPage = this.currentPage$.value;
-    this.todosSrv.count().subscribe((totalTodos) => {
-      const totalPages = Math.ceil(totalTodos / this.todosPerPage);
-
+    this.totalPages$.subscribe((totalPages) => {
       if (currentPage < totalPages) {
         this.currentPage$.next(currentPage + 1);
       }
-      //console.log('test');
     });
   }
 
-  totalPages$ = this.todosSrv.count().pipe(
+  totalPages$ = this.todosSrv.count(this.showCompleted).pipe(
     map((totalTodos) => Math.ceil(totalTodos / this.todosPerPage)),
     catchError(() => of(0))
   );
