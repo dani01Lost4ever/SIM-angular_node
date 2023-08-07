@@ -1,0 +1,13 @@
+<div class="card mt-2" style="height: 340px !important">
+  <div class="card-body">
+    <h5 class="card-title">{{ todo.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <p class="card-text">{{ todo.createdBy.fullName }}</p>
+    <a href="https://github.com/dani01Lost4ever" class="btn btn-link"
+      >details</a
+    >
+  </div>
+  <div class="input-group mb-3" style="padding: 20px" *ifAuthenticated>
+    Test
+  </div>
+</div>
