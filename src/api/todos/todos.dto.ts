@@ -43,6 +43,7 @@ export class AssignDTOBody {
 
 export class ListValidate {
   @IsBoolean()
+  @IsOptional()
   @Transform(({ value }) => {
     if (value.toLowerCase() == "true") {
       return true;
