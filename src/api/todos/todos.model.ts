@@ -12,7 +12,8 @@ export const todoSchema = new Schema<Todo>({
 });
 
 todoSchema.virtual("expired").get(function () {
-  if (this.dueDate != null) return checkIfExpired(this.dueDate!);
+  if (this.dueDate != null)
+    return checkIfExpired(this.dueDate!, this.completed!);
 });
 
 todoSchema.set("toJSON", {
