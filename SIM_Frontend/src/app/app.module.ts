@@ -12,6 +12,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { TodosComponent } from './pages/todos/todos.component';
 import { TodoCardComponent } from './components/todo-card/todo-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AssignedToModalComponent } from './components/assigned-to-modal/assigned-to-modal.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -21,6 +27,7 @@ import { TodoCardComponent } from './components/todo-card/todo-card.component';
     IfAuthenticatedDirective,
     TodosComponent,
     TodoCardComponent,
+    AssignedToModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,11 @@ import { TodoCardComponent } from './components/todo-card/todo-card.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
