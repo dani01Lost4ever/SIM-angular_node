@@ -32,6 +32,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   todosPerPage = 24;
   showCompleted: boolean = false;
+  showExpired: boolean = false;
 
   // todos$ = this.currentPage$.pipe(
   //   switchMap((currentPage) =>
@@ -47,7 +48,7 @@ export class TodosComponent implements OnInit, OnDestroy {
   // );
   todos$ = this.currentPage$.pipe(
     switchMap((currentPage) =>
-      this.todosSrv.list(this.showCompleted).pipe(
+      this.todosSrv.list(this.showCompleted, this.showExpired).pipe(
         map((todos) => {
           const startIndex = (currentPage - 1) * this.todosPerPage;
           const endIndex = startIndex + this.todosPerPage;
@@ -60,7 +61,12 @@ export class TodosComponent implements OnInit, OnDestroy {
   onFlexSwitchChange(event: any) {
     this.showCompleted = event.target.checked;
     this.currentPage$.next(this.currentPage$.value); // Force refresh.
-    console.log(this.showCompleted);
+    console.log('showCompleted?', this.showCompleted);
+  }
+  onFlexSwitchChangeEXP(event: any) {
+    this.showExpired = event.target.checked;
+    this.currentPage$.next(this.currentPage$.value); // Force refresh.
+    console.log('showExpired?', this.showExpired);
   }
 
   previousPage() {
@@ -79,7 +85,7 @@ export class TodosComponent implements OnInit, OnDestroy {
     });
   }
 
-  totalPages$ = this.todosSrv.count(this.showCompleted).pipe(
+  totalPages$ = this.todosSrv.count(this.showCompleted, this.showExpired).pipe(
     map((totalTodos) => Math.ceil(totalTodos / this.todosPerPage)),
     catchError(() => of(0))
   );
@@ -89,5 +95,9 @@ export class TodosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destryed$.next();
     this.destryed$.complete();
+  }
+
+  handleRefreshList() {
+    this.currentPage$.next(this.currentPage$.value);
   }
 }
