@@ -1,13 +1,105 @@
-<div class="card mt-2" style="height: 340px !important">
+<div
+  class="card mt-2"
+  [class.red-bg]="todo.expired"
+  [class.green-bg]="todo.completed"
+  [class.yellow-bg]="
+    !todo.expired &&
+    todo.dueDate &&
+    !todo.completed &&
+    isDueDateClose(todo.dueDate)
+  "
+  style="min-height: 300px !important"
+>
   <div class="card-body">
     <h5 class="card-title">{{ todo.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted"></h6>
-    <p class="card-text">{{ todo.createdBy.fullName }}</p>
-    <a href="https://github.com/dani01Lost4ever" class="btn btn-link"
-      >details</a
+    <hr />
+    <!-- <h6 class="card-subtitle mb-2">CreatedBy:</h6>
+    <img class="imgUser" src="{{ todo.createdBy.picture }}" alt="User image" />
+    <span class="card-text">{{ todo.createdBy.fullName }}</span>
+
+    <br /><br />
+
+    <div class="" *ngIf="todo.assignedTo != null; else noAssignedTo">
+      <h6 class="card-subtitle mb-2">Assignedto:</h6>
+      <img
+        class="imgUser"
+        src="{{ todo.assignedTo.picture }}"
+        alt="User image"
+      />
+      <span class="card-text">{{ todo.assignedTo.fullName }}</span>
+    </div> -->
+    <div class="user-information-container">
+      <div class="created-by">
+        <h6 class="card-subtitle mb-2">Created by:</h6>
+        <img
+          class="imgUser"
+          src="{{ todo.createdBy.picture }}"
+          alt="User image"
+        />
+        <span class="card-text">{{ todo.createdBy.fullName }}</span>
+      </div>
+
+      <div
+        class="assigned-to"
+        *ngIf="todo.assignedTo != null; else noAssignedTo"
+      >
+        <h6 class="card-subtitle mb-2">Assigned to:</h6>
+        <img
+          class="imgUser"
+          src="{{ todo.assignedTo.picture }}"
+          alt="User image"
+        />
+        <span class="card-text">{{ todo.assignedTo.fullName }}</span>
+      </div>
+    </div>
+    <ng-template #noAssignedTo>
+      <div class="assign-user">
+        <h6 class="card-subtitle mb-2">Assign an User?</h6>
+        <button
+          class="assign-user-button"
+          mat-raised-button
+          (click)="openUserModal()"
+          *ngIf="!todo.expired; disabled"
+        >
+          Assign User
+        </button>
+      </div>
+    </ng-template>
+    <hr />
+    <div *ngIf="todo.dueDate != null">
+      <h6 class="card-subtitle mb-2">Best complete by:</h6>
+      <p class="card-text">{{ todo.dueDate | date : "dd/MM/yyyy" }}</p>
+    </div>
+
+    <div
+      *ngIf="todo.expired"
+      class="card-footer text-muted"
+      style="color: red !important"
     >
+      EXPIRED
+    </div>
+    <div
+      *ngIf="todo.completed"
+      class="card-footer text-muted"
+      style="color: green !important"
+    >
+      COMPLETED
+    </div>
+
+    <div
+      *ngIf="
+        todo.dueDate &&
+        !todo.completed &&
+        !todo.expired &&
+        isDueDateClose(todo.dueDate)
+      "
+      class="card-footer text-muted"
+      style="color: orange !important"
+    >
+      DEADLINE
+    </div>
   </div>
-  <div class="input-group mb-3" style="padding: 20px" *ifAuthenticated>
+  <!-- <div class="input-group mb-3" style="padding: 20px" *ifAuthenticated>
     Test
-  </div>
+  </div> -->
 </div>
