@@ -1,0 +1,35 @@
+.imgUser {
+  max-width: 35px;
+  height: auto;
+}
+
+.red-bg {
+  background-color: rgba(255, 0, 0, 0.24);
+}
+
+.green-bg {
+  background-color: rgba(0, 128, 0, 0.24);
+}
+.yellow-bg {
+  background-color: rgba(255, 255, 0, 0.24);
+}
+
+.user-information-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.created-by,
+.assigned-to {
+  flex: 1 1 0px;
+  align-content: center;
+}
+
+.assign-user {
+  display: flex;
+  flex-direction: column;
+}
+
+.assign-user-button {
+  order: 2;
+}
