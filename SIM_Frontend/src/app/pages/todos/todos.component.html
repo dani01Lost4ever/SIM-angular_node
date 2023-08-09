@@ -11,15 +11,7 @@
   />
 </head>
 <div class="container-fluid mt-5">
-  <h1
-    style="
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      text-align: center;
-    "
-  >
-    SIM_Todos_Dani01_cs
-  </h1>
+  <h1 class="h1Title text-light">SIM_Todos_Dani01_cs</h1>
   <div class="row">
     <div class="col">
       <div class="form-check form-switch">
@@ -30,7 +22,7 @@
           id="flexSwitchCheckDefault"
           (change)="onFlexSwitchChange($event)"
         />
-        <label class="form-check-label" for="flexSwitchCheckDefault"
+        <label class="form-check-label text-light" for="flexSwitchCheckDefault"
           >Show Completed</label
         >
       </div>
@@ -42,12 +34,14 @@
           id="flexSwitchCheckDefaultEXP"
           (change)="onFlexSwitchChangeEXP($event)"
         />
-        <label class="form-check-label" for="flexSwitchCheckDefaultEXP"
+        <label
+          class="form-check-label text-light"
+          for="flexSwitchCheckDefaultEXP"
           >Show Expired</label
         >
       </div>
       <br />
-      <hr class="style-seven" />
+      <hr class="style-seven text-light" />
       <div class="row row-cols-1 row-cols-md-4 g-6 mt-5" *ifAuthenticated>
         <div class="col" *ngFor="let todo of todos$ | async">
           <app-todo-card
@@ -58,17 +52,17 @@
       </div>
       <div class="d-flex justify-content-center mt-4">
         <button
-          class="btn btn-primary btn-sm"
+          class="btn btn-secondary btn-sm"
           (click)="previousPage()"
           style="width: 110px !important"
         >
           Previous
         </button>
-        <span>
+        <span class="text-light">
           ~ Page {{ currentPage$ | async }} of {{ totalPages$ | async }} ~
         </span>
         <button
-          class="btn btn-primary btn-sm"
+          class="btn btn-secondary btn-sm"
           (click)="nextPage()"
           style="width: 110px !important"
         >
