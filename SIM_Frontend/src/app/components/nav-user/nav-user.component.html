@@ -3,7 +3,17 @@
     <img [src]="user!.picture" class="nav-user-avatar" />
     {{ user!.fullName }}
   </a>
-  <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-    <a ngbDropdownItem href="#" (click)="logout()">Logout</a>
+  <div
+    ngbDropdownMenu
+    aria-labelledby="navbarDropdown3"
+    class="dropdown-menu colorLogout"
+  >
+    <a
+      ngbDropdownItem
+      href="#"
+      class="colorLogout text-light"
+      (click)="logout()"
+      >Logout</a
+    >
   </div>
 </li>
