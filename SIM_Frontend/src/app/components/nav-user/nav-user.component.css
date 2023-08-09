@@ -2,3 +2,9 @@
   height: 40px;
   border-radius: 50%;
 }
+.colorLogout {
+  background-color: #191919;
+}
+.colorLogout a::hover {
+  background-color: gray;
+}
