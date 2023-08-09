@@ -1,0 +1,11 @@
+.bgcolorNav {
+  background-color: #191919;
+}
+.bgcolorFull {
+  background-color: #202020;
+  height: 100vh;
+}
+.red-bg {
+  /* background-color: rgba(255, 0, 0, 0.44); */
+  background-color: rgba(77, 18, 18, 0.8);
+}
