@@ -1,18 +1,20 @@
-<nav class="navbar navbar-dark bg-primary mb-3">
+<div class="bgcolorFull">
+  <nav class="navbar navbar-dark mb-3 bgcolorNav">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/todos']">SIM_Todos</a>
+      <ul class="navbar-nav mr-2">
+        <app-nav-user
+          [user]="currentUser$ | async"
+          (logout)="logout()"
+          *ngIf="currentUser$ | async"
+        ></app-nav-user>
+        <li class="nav-item" *ngIf="!(currentUser$ | async)">
+          <a class="nav-link" [routerLink]="['login']">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/todos']">SIM_Todos</a>
-    <ul class="navbar-nav mr-2">
-      <app-nav-user
-        [user]="currentUser$ | async"
-        (logout)="logout()"
-        *ngIf="currentUser$ | async"
-      ></app-nav-user>
-      <li class="nav-item" *ngIf="!(currentUser$ | async)">
-        <a class="nav-link" [routerLink]="['login']">Login</a>
-      </li>
-    </ul>
+    <router-outlet></router-outlet>
   </div>
-</nav>
-<div class="container-fluid">
-  <router-outlet></router-outlet>
 </div>
