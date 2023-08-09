@@ -1,17 +1,35 @@
+.card {
+  min-height: 300px !important;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* takes up full height of parent card */
+}
+
 .imgUser {
   max-width: 35px;
   height: auto;
+  border-radius: 50%;
+  padding-right: 10px;
 }
 
 .red-bg {
-  background-color: rgba(255, 0, 0, 0.24);
+  /* background-color: rgba(255, 0, 0, 0.44); */
+  background-color: rgba(77, 18, 18, 0.8);
 }
 
 .green-bg {
-  background-color: rgba(0, 128, 0, 0.24);
+  /* background-color: rgba(0, 128, 0, 0.44); */
+  background-color: rgba(0, 64, 0, 0.8);
 }
 .yellow-bg {
-  background-color: rgba(255, 255, 0, 0.24);
+  /* background-color: rgba(255, 255, 0, 0.44); */
+  background-color: rgba(102, 102, 0, 0.8);
+}
+.white-bg {
+  background-color: rgba(105, 105, 105, 0.6);
 }
 
 .user-information-container {
@@ -32,4 +50,17 @@
 
 .assign-user-button {
   order: 2;
+}
+
+.impossibleToAssign {
+  width: 150px;
+  font-size: 7;
+  line-height: 1;
+  color: red;
+}
+
+.vertical-hr {
+  border-left: 1px solid #000; /* Adjust color and thickness as needed */
+  height: 100px; /* Adjust height as needed */
+  margin: 0 10px; /* Adjust margin as needed */
 }
