@@ -28,18 +28,6 @@ export class TodoCardComponent {
     const currentDate = new Date();
     const timeDifference = dueDate.getTime() - currentDate.getTime();
     const daysDifference = timeDifference / (1000 * 3600 * 24);
-    // console.log(
-    //   'NotFormattedDueDate_',
-    //   dueDateString,
-    //   'DueDate_',
-    //   dueDate,
-    //   'Difference_',
-    //   daysDifference,
-    //   'Value_',
-    //   daysDifference <= 30,
-    //   'TODO_',
-    //   this.todo.title
-    // );
     return daysDifference <= 50;
   }
 
@@ -58,5 +46,18 @@ export class TodoCardComponent {
         }
       );
     });
+  }
+
+  checkButton(event: any, id: string) {
+    console.log('CheckUncheck_', event.checked);
+    this.Srv.checkTodo(event.checked, id).subscribe(
+      (response) => {
+        console.log('Response: ', response);
+        this.refreshList.emit();
+      },
+      (error) => {
+        console.log('Error: ', error);
+      }
+    );
   }
 }

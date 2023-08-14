@@ -63,7 +63,7 @@
     <div *ngIf="todo.dueDate != null; else noDateDisplay">
       <h6 class="card-subtitle mb-2 text-light">Best complete by:</h6>
       <p class="card-text text-light">
-        {{ todo.dueDate | date : "dd/MM/yyyy" }}
+        {{ todo.dueDate | date : "dd/MM/yyyy HH:mm" }}
       </p>
     </div>
     <ng-template #noDateDisplay>
@@ -110,9 +110,13 @@
       >
         AWAITING COMPLETION
       </div>
+      <mat-slide-toggle
+        [checked]="todo.completed"
+        (change)="checkButton($event, todo.id ?? '')"
+      >
+        <span *ngIf="todo.completed">Uncheck</span>
+        <span *ngIf="!todo.completed">Check</span>
+      </mat-slide-toggle>
     </div>
   </div>
-  <!-- <div class="input-group mb-3" style="padding: 20px" *ifAuthenticated>
-    Test
-  </div> -->
 </div>

@@ -1,25 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import {
-  Subject,
-  map,
-  BehaviorSubject,
-  switchMap,
-  catchError,
-  of,
-  combineLatest,
-} from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, map, BehaviorSubject, switchMap, catchError, of } from 'rxjs';
 import { TodosService } from 'src/app/services/todos.service';
-import { merge } from 'rxjs';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
