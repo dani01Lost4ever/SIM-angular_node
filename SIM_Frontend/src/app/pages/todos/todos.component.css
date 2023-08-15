@@ -3,3 +3,9 @@
   font-size: 48px;
   text-align: center;
 }
+.buttonAdd {
+  border: none;
+  background-color: transparent;
+  width: 375px !important;
+  height: 300px !important;
+}

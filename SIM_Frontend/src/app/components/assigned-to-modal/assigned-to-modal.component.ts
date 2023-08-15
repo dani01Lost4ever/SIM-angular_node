@@ -11,13 +11,13 @@ import { TodosService } from 'src/app/services/todos.service';
 export class AssignedToModalComponent implements OnInit {
   displayedColumns: string[] = ['actions'];
   dataSource: User[] = [];
-
   constructor(
     private dialogRef: MatDialogRef<AssignedToModalComponent>,
     private todosService: TodosService
   ) {}
 
   assignUser(user: User) {
+    //console.log(user);
     this.dialogRef.close(user);
   }
 

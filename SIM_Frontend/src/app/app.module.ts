@@ -19,6 +19,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AddCardComponent } from './components/add-card/add-card.component';
+import { AddTodoModalComponent } from './components/add-todo-modal/add-todo-modal.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AddTodoModalButtonsComponent } from './components/add-todo-modal-buttons/add-todo-modal-buttons.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -29,6 +42,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     TodosComponent,
     TodoCardComponent,
     AssignedToModalComponent,
+    AddCardComponent,
+    AddTodoModalComponent,
+    AddTodoModalButtonsComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +60,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCardModule,
     MatCheckboxModule,
     MatSlideToggleModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

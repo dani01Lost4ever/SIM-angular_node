@@ -1,0 +1,77 @@
+<div>
+  <div class="add-title">
+    <h2 class="primary">Add Todo</h2>
+  </div>
+  <div>
+    <form [formGroup]="formGroup" (change)="formChanged()">
+      <mat-grid-list
+        cols="2"
+        [cols]="breakpoint"
+        rowHeight="85px"
+        (window:resize)="onResize($event)"
+      >
+        <mat-grid-tile>
+          <div class="text-inside">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Todo title"
+                value="{{ title }}"
+                formControlName="Title"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <div class="text-inside">
+            <!-- <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="dueDate" />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field> -->
+          </div>
+          <div [formGroup]="formGroup">
+            <mat-form-field>
+              <input
+                matInput
+                [ngxMatDatetimePicker]="picker1"
+                placeholder="Choose a date"
+                formControlName="date"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="$any(picker1)"
+              ></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="btn-sec">
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          class="Update-btn"
+          (click)="onAddTodo()"
+          [disabled]="formGroup.get('Title')?.invalid"
+        >
+          Save
+        </button>
+        <button
+          mat-raised-button
+          type="button"
+          class="Discard-btn"
+          (click)="openDialog()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

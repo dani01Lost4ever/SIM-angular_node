@@ -2,9 +2,10 @@
   <table mat-table [dataSource]="dataSource">
     <!-- The rest of your columns here -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Users</th>
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let user">
         <button mat-button (click)="assignUser(user)">
+          <!-- <img src="{{ user.picture }}" class="modalPicuture" /> -->
           {{ user.fullName }}
         </button>
       </td>

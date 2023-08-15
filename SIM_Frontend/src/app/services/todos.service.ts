@@ -49,7 +49,7 @@ export class TodosService {
   }
 
   assignTo(todoId: string, userId: string): Observable<object> {
-    return this.http.patch(`/api/todos/${todoId}/assignTo`, {
+    return this.http.post(`/api/todos/${todoId}/assignTo`, {
       userId: userId,
     });
   }

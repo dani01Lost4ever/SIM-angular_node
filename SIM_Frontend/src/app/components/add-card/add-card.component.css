@@ -1,0 +1,16 @@
+.imgAdd {
+  width: 250px;
+  height: auto;
+}
+.card {
+  background-color: rgb(76, 76, 76);
+  /* border-width: 7px;
+  border-color: black;
+  border-radius: 5px; */
+  min-height: 300px !important;
+  width: 498px !important;
+  left: -6px;
+}
+.card::hover {
+  background-color: rgb(114, 114, 114);
+}
