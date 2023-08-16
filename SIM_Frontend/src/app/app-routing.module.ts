@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { TodosComponent } from './pages/todos/todos.component';
 import { authGuard } from './guards/auth.guard';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: 'todos',
     component: TodosComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
 ];
 

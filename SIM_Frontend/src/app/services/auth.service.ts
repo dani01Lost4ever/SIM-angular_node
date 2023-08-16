@@ -45,4 +45,20 @@ export class AuthService {
       .get<User>('/api/users/me')
       .subscribe((user) => this._currentUser$.next(user));
   }
+
+  register(
+    firstName: string,
+    lastName: string,
+    picture: string,
+    username: string,
+    password: string
+  ) {
+    return this.http.post('/api/register', {
+      firstName,
+      lastName,
+      picture,
+      username,
+      password,
+    });
+  }
 }

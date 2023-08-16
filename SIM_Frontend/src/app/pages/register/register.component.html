@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Registration Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="login-form">
+      <div class="text">REGISTRATION</div>
+      <form (ngSubmit)="register()" [formGroup]="registerform">
+        <div class="field">
+          <div class="fas fa-user"></div>
+          <input
+            type="text"
+            placeholder="First Name"
+            formControlName="firstName"
+          />
+        </div>
+        <div class="field">
+          <div class="fas fa-user"></div>
+          <input
+            type="text"
+            placeholder="Last Name"
+            formControlName="lastName"
+          />
+        </div>
+        <div class="field">
+          <div class="fas fa-link"></div>
+          <input
+            type="text"
+            placeholder="Profile Picture Link"
+            formControlName="picture"
+          />
+        </div>
+        <div class="field">
+          <div class="fas fa-envelope"></div>
+          <input type="email" placeholder="email" formControlName="username" />
+        </div>
+        <div class="field">
+          <div class="fas fa-lock"></div>
+          <input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </div>
+        <button type="submit">SIGN UP</button>
+        <div class="link">
+          Already a member?
+          <a href="/login">Login now</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

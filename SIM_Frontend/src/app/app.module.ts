@@ -33,6 +33,11 @@ import {
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { MatIconModule } from '@angular/material/icon';
+import { RegisterComponent } from './pages/register/register.component';
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,7 @@ import { MatIconModule } from '@angular/material/icon';
     AddCardComponent,
     AddTodoModalComponent,
     AddTodoModalButtonsComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,9 +76,11 @@ import { MatIconModule } from '@angular/material/icon';
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     MatIconModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 4000 } },
   ],
   bootstrap: [AppComponent],
 })

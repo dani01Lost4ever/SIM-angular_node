@@ -7,3 +7,20 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* .snackbar-success {
+  background-color: green !important;
+  color: white !important;
+  font-size: 20px !important;
+} */
+
+.snackbar-fail {
+  background-color: red !important;
+  color: white !important;
+  font-size: 20px !important;
+}
+.success-snackbar {
+  color: white;
+  --mdc-snackbar-container-color: var(--success-color);
+  --mat-mdc-snack-bar-button-color: var(--white-color);
+}
