@@ -84,6 +84,7 @@ export const assignTo = async (
     const updated = await todosService.update(id, {
       assignedTo: assignedToUser,
     });
+    console.log(updated);
     res.json(updated);
   } catch (err: any) {
     next(err);

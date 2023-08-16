@@ -13,6 +13,11 @@ export const todoSchema = new Schema<Todo>({
 
 todoSchema.virtual("expired").get(function () {
   if (this.dueDate != null)
+    // console.log(
+    //   this.title,
+    //   this.dueDate!,
+    //   checkIfExpired(this.dueDate!, this.completed!)
+    // );
     return checkIfExpired(this.dueDate!, this.completed!);
 });
 
