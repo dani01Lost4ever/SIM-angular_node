@@ -113,6 +113,8 @@ export class TodosComponent implements OnInit, OnDestroy {
       disableClose: true,
     });
 
-    dialogRef.afterClosed(); //missing implementation
+    dialogRef.afterClosed().subscribe(() => {
+      this.handleRefreshList();
+    });
   }
 }

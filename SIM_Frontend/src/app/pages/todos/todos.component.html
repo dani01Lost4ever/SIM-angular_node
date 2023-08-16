@@ -45,9 +45,7 @@
       <div class="row row-cols-1 row-cols-md-4 g-6 mt-5" *ifAuthenticated>
         <div class="col" *ngFor="let todo of todos$ | async">
           <div *ngIf="todo.id === 'add'">
-            <button (click)="openAddModal()" class="buttonAdd">
-              <app-add-card> </app-add-card>
-            </button>
+            <app-add-card (addCardClick)="openAddModal()"> </app-add-card>
           </div>
           <div *ngIf="todo.id !== 'add'">
             <app-todo-card

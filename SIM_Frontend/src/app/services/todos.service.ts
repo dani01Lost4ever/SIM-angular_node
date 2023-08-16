@@ -3,6 +3,7 @@ import { Todo } from '../interfaces/todos';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { User } from '../interfaces/user';
+import { omitBy, isNull } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -59,5 +60,14 @@ export class TodosService {
     } else {
       return this.http.patch(`/api/todos/${todoId}/uncheck`, null);
     }
+  }
+  //OLD
+  // addTodo(title: string, dueDate?: Date | null, assignedTo?: string | null) {
+  //   return this.http.post<Todo>('/api/todos', { title, dueDate, assignedTo });
+  // }
+  addTodo(title: string, dueDate?: Date | null, assignedTo?: string | null) {
+    const data = { title, dueDate, assignedTo };
+    const filteredData = omitBy(data, isNull);
+    return this.http.post<Todo>('/api/todos', filteredData);
   }
 }

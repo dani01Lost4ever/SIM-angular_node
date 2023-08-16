@@ -1,8 +1,8 @@
-<div>
+<div class="widthModal">
   <div class="add-title">
-    <h2 class="primary">Add Todo</h2>
+    <h2 mat-dialog-title>Add Todo</h2>
   </div>
-  <div>
+  <div mat-dialog-content>
     <form [formGroup]="formGroup" (change)="formChanged()">
       <mat-grid-list
         cols="2"
@@ -25,16 +25,6 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-          <div class="text-inside">
-            <!-- <mat-form-field>
-              <input matInput [matDatepicker]="picker1" placeholder="dueDate" />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker1"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field> -->
-          </div>
           <div [formGroup]="formGroup">
             <mat-form-field>
               <input
@@ -50,6 +40,27 @@
               <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
             </mat-form-field>
           </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <!-- <h6>Assign an User?</h6> -->
+          <button
+            class="assign-user-button"
+            mat-raised-button
+            (click)="openUserModal()"
+            id="buttonAssign"
+          >
+            {{ selectedUserName ? selectedUserName : "Assign User" }}
+          </button>
+
+          <button
+            *ngIf="selectedUserName"
+            mat-icon-button
+            color="warn"
+            (click)="clearSelectedUser()"
+            aria-label="Delete selected user"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-grid-tile>
       </mat-grid-list>
       <div class="btn-sec">

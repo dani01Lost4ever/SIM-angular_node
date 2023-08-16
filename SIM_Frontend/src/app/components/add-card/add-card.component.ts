@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-card',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AddCardComponent {
   //if needed for additional logic
+  @Output() addCardClick = new EventEmitter<void>();
+
+  onClick() {
+    this.addCardClick.emit();
+  }
 }

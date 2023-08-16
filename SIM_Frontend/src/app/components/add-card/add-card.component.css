@@ -1,16 +1,26 @@
 .imgAdd {
   width: 250px;
   height: auto;
+  transition: transform 0.3s;
 }
 .card {
   background-color: rgb(76, 76, 76);
-  /* border-width: 7px;
-  border-color: black;
-  border-radius: 5px; */
   min-height: 300px !important;
-  width: 498px !important;
-  left: -6px;
+  transition: background-color 0.3s, cursor 0.3s;
 }
-.card::hover {
-  background-color: rgb(114, 114, 114);
+
+.card:hover {
+  cursor: pointer;
+  background-color: #666666;
+}
+
+.card:hover .imgAdd {
+  transform: scale(1.15);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
 }
