@@ -24,7 +24,6 @@ import { AddTodoModalComponent } from './components/add-todo-modal/add-todo-moda
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { AddTodoModalButtonsComponent } from './components/add-todo-modal-buttons/add-todo-modal-buttons.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -51,7 +50,6 @@ import { TitleComponent } from './components/title/title.component';
     AssignedToModalComponent,
     AddCardComponent,
     AddTodoModalComponent,
-    AddTodoModalButtonsComponent,
     RegisterComponent,
     TitleComponent,
   ],
