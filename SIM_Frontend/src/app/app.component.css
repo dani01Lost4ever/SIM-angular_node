@@ -2,6 +2,10 @@
   background-color: #191919;
 }
 .bgcolorFull {
-  background-color: #202020 !important;
+  /* background-color: #202020 !important; */
+  background-image: url("../assets/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
 }

@@ -1,11 +1,75 @@
 .h1Title {
-  font-family: "Bebas Neue", sans-serif;
+  color: #c7c7c7;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-family: "Poppins", sans-serif;
   font-size: 48px;
   text-align: center;
+}
+label {
+  letter-spacing: 2px;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
 }
 .buttonAdd {
   border: none;
   background-color: transparent;
   width: 375px !important;
   height: 300px !important;
+}
+
+.container-fluid {
+  background-image: url("../../../assets/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form-check-input {
+  height: 20px;
+  width: 60px;
+  outline: none;
+  border-radius: 30px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(#222, #222);
+  transition: all 0.3s;
+  border: 1px solid #444;
+  position: relative;
+}
+
+.form-check-input:before {
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #868686;
+  transition: all 0.3s;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-check-input:checked {
+  background: linear-gradient(#333933, #222922);
+}
+
+.form-check-input:checked:before {
+  left: 40px;
+  background: #339933;
+  box-shadow: 0 0 20px rgba(50, 205, 50, 0.6),
+    inset 0 0 10px rgba(50, 205, 50, 0.4);
+}
+
+.form-check-label {
+  color: #868686;
+  font-family: "Poppins", sans-serif;
+  padding-left: 10px;
+}
+
+.form-switch {
+  display: flex;
+  align-items: center;
 }

@@ -22,7 +22,7 @@ body {
   text-align: center;
   align-items: center;
   justify-content: center;
-  background: #202020;
+  background: transparent;
 }
 .login-form {
   position: relative;

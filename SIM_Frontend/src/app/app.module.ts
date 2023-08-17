@@ -38,6 +38,7 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
+import { TitleComponent } from './components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {
     AddTodoModalComponent,
     AddTodoModalButtonsComponent,
     RegisterComponent,
+    TitleComponent,
   ],
   imports: [
     BrowserModule,

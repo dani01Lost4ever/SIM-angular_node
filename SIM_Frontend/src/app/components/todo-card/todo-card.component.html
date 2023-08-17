@@ -45,8 +45,8 @@
       <div class="assign-user">
         <h6 class="card-subtitle mb-2 text-light">Assign an User?</h6>
         <button
-          class="assign-user-button"
-          mat-raised-button
+          class="assign-user-button text-light"
+          mat-stroked-button
           (click)="openUserModal()"
           *ngIf="!todo.expired; else impossibleToAssign"
         >
@@ -55,9 +55,7 @@
       </div>
     </ng-template>
     <ng-template #impossibleToAssign>
-      <span class="impossibleToAssign text-light"
-        >Expired Todo, no available action</span
-      >
+      <span class="impossibleToAssign text-light">No available actions</span>
     </ng-template>
     <hr class="text-light" />
     <div *ngIf="todo.dueDate != null; else noDateDisplay">
