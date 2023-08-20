@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     protected fb: FormBuilder,
     private authSrv: AuthService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +47,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         .login(username!, password!)
         .pipe(
           catchError((err) => {
-            this.loginError = err.error.message;
+            this.loginError = err.error.code;
+            this.openSnackBar(`Login failed: ${this.loginError}`, 'OK', 'fail');
             return throwError(() => err);
           })
         )
@@ -53,5 +56,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/todos']);
         });
     }
+  }
+
+  openSnackBar(message: string, action: string, color: string) {
+    console.log(message, action, color);
+    this._snackBar.open(message, action, { panelClass: [`${color}`] });
   }
 }

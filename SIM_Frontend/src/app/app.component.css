@@ -9,3 +9,11 @@
   background-size: cover;
   min-height: 100vh;
 }
+.navbar-brand {
+  font-size: 21px;
+  color: #c7c7c7;
+  letter-spacing: 2px;
+  font-family: "Poppins", sans-serif;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
