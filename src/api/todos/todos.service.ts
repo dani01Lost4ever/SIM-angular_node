@@ -9,24 +9,23 @@ export class TodosService {
   //     $or: [{ createdBy: userId }, { assignedTo: userId }],
   //   }).populate("createdBy");
   // }
-  async find(userId: string, showCompleted: boolean): Promise<Todo[]>;
-  async find(userId: string): Promise<Todo[]>;
+
+  // async find(userId: string, showCompleted: boolean): Promise<Todo[]>;
+  // async find(userId: string): Promise<Todo[]>;
   async find(userId: string, showCompleted: boolean = false) {
     //OLD
     // const now = new Date();
     // const filter: any = {
     //   $or: [{ createdBy: userId }, { assignedTo: userId }],
     // };
-
     // if (!showCompleted) {
     //   filter.completed = false;
     // }
-
     // const list = await TodosModel.find(filter)
     //   .populate("createdBy assignedTo")
     //   .sort({ dueDate: 1, createdAt: 1 });
     // return list;
-    const now = new Date();
+    //const now = new Date();
     const filter: any = {
       $or: [{ createdBy: userId }, { assignedTo: userId }],
     };
