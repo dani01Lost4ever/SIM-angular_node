@@ -28,6 +28,7 @@
           <div [formGroup]="formGroup">
             <mat-form-field>
               <input
+                [min]="minDate"
                 matInput
                 [ngxMatDatetimePicker]="picker1"
                 placeholder="Choose a date"
