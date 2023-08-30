@@ -15,11 +15,11 @@ export const loginValidator = (type: "two" | "one" = "two") => {
     const todoId = req.params.id;
 
     const q: any = {
-      createdBy: userId,
+      _id: todoId,
     };
 
     if (type === "two") {
-      q.$or = [{ assignedTo: userId }, { _id: todoId }];
+      q.$or = [{ assignedTo: userId }, { createdBy: userId }];
     } else {
       q._id = todoId;
     }
