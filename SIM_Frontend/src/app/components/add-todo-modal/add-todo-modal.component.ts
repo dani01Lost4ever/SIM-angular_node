@@ -16,6 +16,7 @@ import { AssignedToModalComponent } from '../assigned-to-modal/assigned-to-modal
   styleUrls: ['./add-todo-modal.component.css'],
 })
 export class AddTodoModalComponent {
+  minDate: Date;
   public breakpoint: number = 0; // Breakpoint observer code
   public title: string = ``;
   wasFormChanged = false;
@@ -26,7 +27,9 @@ export class AddTodoModalComponent {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private Srv: TodosService
-  ) {}
+  ) {
+    this.minDate = new Date();
+  }
   public formGroup = new FormGroup({
     Title: new FormControl(null, [Validators.required]),
     date: new FormControl(null),
