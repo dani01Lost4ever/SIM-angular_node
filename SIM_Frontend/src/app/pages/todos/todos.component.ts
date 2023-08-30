@@ -20,7 +20,7 @@ import { TodosService } from 'src/app/services/todos.service';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css'],
 })
-export class TodosComponent implements OnInit, OnDestroy {
+export class TodosComponent {
   constructor(private todosSrv: TodosService, private dialog: MatDialog) {}
   private destryed$ = new Subject<void>();
   public currentPage$ = new BehaviorSubject<number>(1);
@@ -28,7 +28,10 @@ export class TodosComponent implements OnInit, OnDestroy {
   private showCompleted: boolean = false;
   private showExpired: boolean = false;
   private totalTodos$ = new BehaviorSubject<number>(0);
-  public totalPages$!: Observable<number>;
+  public totalPages$: Observable<number> = this.totalTodos$.pipe(
+    map((totalTodos) => Math.ceil(totalTodos / this.todosPerPage)),
+    catchError(() => of(0))
+  );
 
   // todos$ = this.currentPage$.pipe(
   //   switchMap((currentPage) =>
@@ -43,18 +46,31 @@ export class TodosComponent implements OnInit, OnDestroy {
   //     )
   //   )
   // );
+  // todos$ = this.currentPage$.pipe(
+  //   switchMap((currentPage) =>
+  //     this.todosSrv.list(this.showCompleted, this.showExpired).pipe(
+  //       tap((todos) => this.totalTodos$.next(todos.length)),
+  //       map((todos) => {
+  //         if (currentPage === 1) {
+  //           todos = [
+  //             { id: 'add', title: 'ADD', createdBy: this.user },
+  //             ...todos,
+  //           ]; // add your initial "Add" Todo object
+  //         }
+  //         const startIndex = (currentPage - 1) * this.todosPerPage;
+  //         const endIndex = startIndex + this.todosPerPage;
+  //         return todos.slice(startIndex, endIndex);
+  //       }),
+  //       catchError((err) => of([]))
+  //     )
+  //   )
+  // );
   user: User = { firstName: '', lastName: '', picture: '', fullName: '' };
   todos$ = this.currentPage$.pipe(
     switchMap((currentPage) =>
       this.todosSrv.list(this.showCompleted, this.showExpired).pipe(
         tap((todos) => this.totalTodos$.next(todos.length)),
         map((todos) => {
-          if (currentPage === 1) {
-            todos = [
-              { id: 'add', title: 'ADD', createdBy: this.user },
-              ...todos,
-            ]; // add your initial "Add" Todo object
-          }
           const startIndex = (currentPage - 1) * this.todosPerPage;
           const endIndex = startIndex + this.todosPerPage;
           return todos.slice(startIndex, endIndex);
@@ -63,18 +79,6 @@ export class TodosComponent implements OnInit, OnDestroy {
       )
     )
   );
-
-  ngOnInit(): void {
-    this.totalPages$ = this.totalTodos$.pipe(
-      map((totalTodos) => Math.ceil(totalTodos / this.todosPerPage)),
-      catchError(() => of(0))
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.destryed$.next();
-    this.destryed$.complete();
-  }
 
   handleRefreshList() {
     this.currentPage$.next(this.currentPage$.value);
