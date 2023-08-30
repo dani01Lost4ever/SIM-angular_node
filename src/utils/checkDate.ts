@@ -23,25 +23,36 @@
 //   }
 //   return false;
 // }
-import { utcToZonedTime, format } from "date-fns-tz";
+// import { utcToZonedTime, format } from "date-fns-tz";
+
+// export default function checkIfExpired(
+//   date: Date,
+//   completed: boolean
+// ): boolean {
+//   if (!completed) {
+//     const italyTimeZone = "Europe/Rome";
+//     const formatStr = "yyyy/MM/dd HH:mm:ss";
+//     const dateInItalian = utcToZonedTime(date, italyTimeZone);
+//     const dateStringInItalian = format(dateInItalian, formatStr, {
+//       timeZone: italyTimeZone,
+//     });
+//     const now = new Date();
+//     const nowInItalian = utcToZonedTime(now, italyTimeZone);
+//     const nowStringInItalian = format(nowInItalian, formatStr, {
+//       timeZone: italyTimeZone,
+//     });
+//     return dateStringInItalian < nowStringInItalian;
+
+//   }
+//   return false;
+// }
 
 export default function checkIfExpired(
   date: Date,
   completed: boolean
 ): boolean {
   if (!completed) {
-    const italyTimeZone = "Europe/Rome";
-    const formatStr = "yyyy/MM/dd HH:mm:ss";
-    const dateInItalian = utcToZonedTime(date, italyTimeZone);
-    const dateStringInItalian = format(dateInItalian, formatStr, {
-      timeZone: italyTimeZone,
-    });
-    const now = new Date();
-    const nowInItalian = utcToZonedTime(now, italyTimeZone);
-    const nowStringInItalian = format(nowInItalian, formatStr, {
-      timeZone: italyTimeZone,
-    });
-    return dateStringInItalian < nowStringInItalian;
+    return date < new Date();
   }
   return false;
 }
