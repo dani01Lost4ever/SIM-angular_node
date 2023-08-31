@@ -10,24 +10,6 @@ export const userSchema = new Schema<iUser>({
 userSchema.virtual("fullName").get(function () {
   return `${this.firstName} ${this.lastName}`;
 });
-// userSchema.virtual("username").get(async function () {
-//   const identity = await mongoose
-//     .model("UserIdentity")
-//     .findOne({ user: this._id });
-//   return identity?.credentials?.username;
-// });
-// userSchema.virtual("username").get(function () {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       const identity = await mongoose
-//         .model("UserIdentity")
-//         .findOne({ user: this._id });
-//       resolve(identity?.credentials.username);
-//     } catch (error) {
-//       reject(error);
-//     }
-//   });
-// });
 
 userSchema.set("toJSON", {
   virtuals: true,
