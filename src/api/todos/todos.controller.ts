@@ -7,6 +7,7 @@ import {
   AssignParamDTO,
   ListValidateDTO,
   SetCompleteDTO,
+  deleteDTO,
 } from "./todos.dto";
 import { Todo } from "./todos.entity";
 
@@ -85,6 +86,34 @@ export const assignTo = async (
     });
     console.log(updated);
     res.json(updated);
+  } catch (err: any) {
+    next(err);
+  }
+};
+
+export const deleteTodo = async (
+  req: TypedRequest<any, any, deleteDTO>,
+  res: Response,
+  next: NextFunction
+) => {
+  const id = req.params.id;
+  try {
+    const deletedTodo = await todosService.delete(id);
+    res.status(200).json(deletedTodo);
+  } catch (err: any) {
+    next(err);
+  }
+};
+
+export const deleteTodoByUser = async (
+  req: TypedRequest<any, any, deleteDTO>,
+  res: Response,
+  next: NextFunction
+) => {
+  const id = req.params.id;
+  try {
+    const deletedTodos = await todosService.deleteByUser(id);
+    res.status(200).json(deletedTodos);
   } catch (err: any) {
     next(err);
   }
