@@ -1,13 +1,12 @@
 import { Router } from "express";
 import { validate } from "../../utils/validation.middleware";
-import passport from "passport";
 import { isAuthenticated } from "../../utils/auth/authenticated.middleware";
 import {
   AddTodosDTO,
-  AssignDTOBody,
-  AssignDTOParam,
-  ListValidate,
-  SetComplete,
+  AssignBodyDTO,
+  AssignParamDTO,
+  ListValidateDTO,
+  SetCompleteDTO,
 } from "./todos.dto";
 import {
   add,
@@ -19,32 +18,31 @@ import {
 import { loginValidator } from "../../utils/loginValidator.middleware";
 
 const router = Router();
-
 router.use(isAuthenticated);
 
-router.get("/", validate(ListValidate, "query"), list);
+router.get("/", validate(ListValidateDTO, "query"), list);
 
 router.post("/", validate(AddTodosDTO, "body"), add);
 
 router.patch(
   "/:id/check",
   loginValidator("two"),
-  validate(SetComplete, "params"),
+  validate(SetCompleteDTO, "params"),
   setComplete
 );
 
 router.patch(
   "/:id/uncheck",
   loginValidator("two"),
-  validate(SetComplete, "params"),
+  validate(SetCompleteDTO, "params"),
   setUncomplete
 );
 
 router.post(
   "/:id/assignTo",
   loginValidator("one"),
-  validate(AssignDTOBody, "body"),
-  validate(AssignDTOParam, "params"),
+  validate(AssignBodyDTO, "body"),
+  validate(AssignParamDTO, "params"),
   assignTo
 );
 
