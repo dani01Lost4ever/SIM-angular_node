@@ -7,10 +7,13 @@ import {
   AssignParamDTO,
   ListValidateDTO,
   SetCompleteDTO,
+  deleteDTO,
 } from "./todos.dto";
 import {
   add,
   assignTo,
+  deleteTodo,
+  deleteTodoByUser,
   list,
   setComplete,
   setUncomplete,
@@ -23,6 +26,14 @@ router.use(isAuthenticated);
 router.get("/", validate(ListValidateDTO, "query"), list);
 
 router.post("/", validate(AddTodosDTO, "body"), add);
+
+router.delete("/:id/delete", validate(deleteDTO, "params"), deleteTodo);
+
+router.delete(
+  "/:id/deleteByUser",
+  validate(deleteDTO, "params"),
+  deleteTodoByUser
+);
 
 router.patch(
   "/:id/check",
