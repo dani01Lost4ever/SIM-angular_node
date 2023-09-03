@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -17,17 +17,13 @@ import { AssignedToModalComponent } from '../assigned-to-modal/assigned-to-modal
 })
 export class AddTodoModalComponent {
   minDate: Date;
-  public breakpoint: number = 0; // Breakpoint observer code
+  public breakpoint: number = 0;
   public title: string = ``;
   wasFormChanged = false;
   public selectedUserName: string | null = null;
   private user: User | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    public dialog: MatDialog,
-    private Srv: TodosService
-  ) {
+  constructor(public dialog: MatDialog, private Srv: TodosService) {
     this.minDate = new Date();
   }
   public formGroup = new FormGroup({
@@ -37,10 +33,8 @@ export class AddTodoModalComponent {
   public dateControl = new FormControl(new Date(2021, 9, 4, 5, 6, 7));
 
   public onAddTodo(): void {
-    console.log('content added');
     if (this.formGroup.valid) {
       const formData = this.formGroup.value;
-      console.log(formData, this.user?.id);
       this.Srv.addTodo(
         formData.Title ?? '',
         formData.date,
@@ -73,12 +67,12 @@ export class AddTodoModalComponent {
     const dialogRef = this.dialog.open(AssignedToModalComponent);
 
     dialogRef.afterClosed().subscribe((selectedUser: User) => {
-      console.log('SelectedUser_', selectedUser);
+      //console.log('SelectedUser_', selectedUser);
       if (selectedUser) {
         this.user = selectedUser;
-        this.selectedUserName = selectedUser.fullName; // Update selected user's name
+        this.selectedUserName = selectedUser.fullName;
       } else {
-        this.clearSelectedUser(); // Clear selected user when "Delete" is clicked
+        this.clearSelectedUser();
       }
     });
   }
