@@ -48,7 +48,7 @@
           class="assign-user-button text-light"
           mat-stroked-button
           (click)="openUserModal()"
-          *ngIf="!todo.expired; else impossibleToAssign"
+          *ngIf="!todo.expired && !todo.completed; else impossibleToAssign"
         >
           Assign User
         </button>
