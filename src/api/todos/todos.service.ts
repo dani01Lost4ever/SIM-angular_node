@@ -55,7 +55,6 @@ export class TodosService {
         delete todo.assignedTo;
       }
     });
-    //console.log(todos);
     return todos;
   }
   async query(userId: string, showCompleted: boolean = false) {
