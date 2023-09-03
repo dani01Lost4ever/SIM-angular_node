@@ -1,3 +1,13 @@
+export default function checkIfExpired(
+  date: Date,
+  completed: boolean
+): boolean {
+  if (!completed) {
+    return date < new Date();
+  }
+  return false;
+}
+
 // export default function checkIfExpired(
 //   date: Date,
 //   completed: boolean
@@ -46,13 +56,3 @@
 //   }
 //   return false;
 // }
-
-export default function checkIfExpired(
-  date: Date,
-  completed: boolean
-): boolean {
-  if (!completed) {
-    return date < new Date();
-  }
-  return false;
-}
