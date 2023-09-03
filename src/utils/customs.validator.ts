@@ -33,7 +33,6 @@ export class IsUserId implements ValidatorConstraintInterface {
     if (mongoose.Types.ObjectId.isValid(value)) {
       const todoUser = await User.findById(value);
       if (!todoUser) {
-        //console.log("USER_INFO_", todoUser);
         return false; // return "false" when user not found
       }
       return true; // return "true" when user found
