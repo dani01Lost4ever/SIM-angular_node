@@ -110,7 +110,7 @@
       </div>
       <mat-slide-toggle
         [checked]="todo.completed"
-        (change)="checkButton($event, todo.id ?? '')"
+        (change)="checkButton($event)"
       >
         <span *ngIf="todo.completed">Uncheck</span>
         <span *ngIf="!todo.completed">Check</span>
