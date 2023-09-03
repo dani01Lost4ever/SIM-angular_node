@@ -54,3 +54,8 @@ export class ListValidateDTO {
   })
   showCompleted: boolean;
 }
+
+export class deleteDTO {
+  @IsMongoId()
+  id: string;
+}
