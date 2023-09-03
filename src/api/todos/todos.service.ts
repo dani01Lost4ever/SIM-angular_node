@@ -162,6 +162,18 @@ export class TodosService {
     await item.save();
     return this._getById(id) as Promise<Todo>;
   }
+
+  async delete(id: string) {
+    const todo = await this._getById(id);
+    if (!todo) {
+      throw new NotFoundError();
+    }
+    await todo.deleteOne();
+  }
+  async deleteByUser(id: string) {
+    const response = await TodosModel.deleteMany({ createdBy: id });
+    return response;
+  }
 }
 
 export default new TodosService();
