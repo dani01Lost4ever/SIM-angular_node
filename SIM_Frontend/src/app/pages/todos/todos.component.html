@@ -17,6 +17,7 @@
       </div>
       <div class="form-check form-switch">
         <input
+          [defaultChecked]="true"
           class="form-check-input"
           type="checkbox"
           role="switch"
@@ -42,7 +43,8 @@
           <!-- <div *ngIf="todo.id !== 'add'"> -->
           <app-todo-card
             [todo]="todo"
-            (refreshList)="handleRefreshList()"
+            (todoChecked)="handleTodoChecked($event)"
+            (userSelected)="handleUserSelected($event)"
           ></app-todo-card>
           <!-- </div> -->
         </div>
