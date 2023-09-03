@@ -6,7 +6,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./add-card.component.css'],
 })
 export class AddCardComponent {
-  //if needed for additional logic
   @Output() addCardClick = new EventEmitter<void>();
 
   onClick() {
