@@ -9,7 +9,6 @@ import { omitBy, isNull } from 'lodash';
   providedIn: 'root',
 })
 export class TodosService {
-  private todosWithFilter: Todo[] = []; // Store the filtered todos
   constructor(private http: HttpClient) {}
 
   list(showCompleted: boolean, showExpired: boolean): Observable<Todo[]> {
@@ -27,7 +26,7 @@ export class TodosService {
   }
 
   count(showCompleted: boolean, showExpired: boolean): Observable<number> {
-    console.log('Count_Refreshed');
+    //console.log('Count_Refreshed');
     return this.list(showCompleted, showExpired).pipe(
       map((todos) => todos.length)
     );
@@ -44,10 +43,6 @@ export class TodosService {
   //   // Simulate counting locally based on the filters
   //   return this.list().pipe(map((todo) => todo.length));
   // }
-
-  userList(): Observable<User[]> {
-    return this.http.get<User[]>('/api/users');
-  }
 
   assignTo(todoId: string, userId: string): Observable<object> {
     return this.http.post(`/api/todos/${todoId}/assignTo`, {
