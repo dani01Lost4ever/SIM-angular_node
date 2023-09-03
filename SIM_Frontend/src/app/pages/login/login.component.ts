@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar(message: string, action: string, color: string) {
-    console.log(message, action, color);
+    //console.log(message, action, color);
     this._snackBar.open(message, action, { panelClass: [`${color}`] });
   }
 }
