@@ -1,17 +1,17 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { TypedRequest } from "../../utils/typed-request.interface";
 import todosService from "./todos.service";
 import {
   AddTodosDTO,
-  AssignDTOBody,
-  AssignDTOParam,
-  ListValidate,
-  SetComplete,
+  AssignBodyDTO,
+  AssignParamDTO,
+  ListValidateDTO,
+  SetCompleteDTO,
 } from "./todos.dto";
 import { Todo } from "./todos.entity";
 
 export const list = async (
-  req: TypedRequest<any, ListValidate, any>,
+  req: TypedRequest<any, ListValidateDTO, any>,
   res: Response,
   next: NextFunction
 ) => {
@@ -29,7 +29,6 @@ export const add = async (
   try {
     const user = req.user!;
     const { title, dueDate, assignedTo } = req.body;
-
     const newTodo: Todo = {
       title,
       dueDate,
@@ -43,7 +42,7 @@ export const add = async (
 };
 
 export const setComplete = async (
-  req: TypedRequest<any, any, SetComplete>,
+  req: TypedRequest<any, any, SetCompleteDTO>,
   res: Response,
   next: NextFunction
 ) => {
@@ -58,7 +57,7 @@ export const setComplete = async (
 };
 
 export const setUncomplete = async (
-  req: TypedRequest<any, any, SetComplete>,
+  req: TypedRequest<any, any, SetCompleteDTO>,
   res: Response,
   next: NextFunction
 ) => {
@@ -73,7 +72,7 @@ export const setUncomplete = async (
 };
 
 export const assignTo = async (
-  req: TypedRequest<AssignDTOBody, any, AssignDTOParam>,
+  req: TypedRequest<AssignBodyDTO, any, AssignParamDTO>,
   res: Response,
   next: NextFunction
 ) => {
