@@ -8,7 +8,6 @@ import {
   Validate,
 } from "class-validator";
 import { IsUserId } from "../../utils/customs.validator";
-import { ObjectId } from "mongoose";
 
 export class AddTodosDTO {
   @IsString()
@@ -25,23 +24,23 @@ export class AddTodosDTO {
   assignedTo: string;
 }
 
-export class SetComplete {
+export class SetCompleteDTO {
   @IsMongoId()
   id: string;
 }
 
-export class AssignDTOParam {
+export class AssignParamDTO {
   @IsMongoId()
   id: string;
 }
 
-export class AssignDTOBody {
+export class AssignBodyDTO {
   @Validate(IsUserId)
   @IsMongoId()
   userId: string;
 }
 
-export class ListValidate {
+export class ListValidateDTO {
   @IsBoolean()
   @IsOptional()
   @Transform(({ value }) => {
