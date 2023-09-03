@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { MatDialogRef } from '@angular/material/dialog';
-import { TodosService } from 'src/app/services/todos.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-assigned-to-modal',
@@ -13,16 +13,15 @@ export class AssignedToModalComponent implements OnInit {
   dataSource: User[] = [];
   constructor(
     private dialogRef: MatDialogRef<AssignedToModalComponent>,
-    private todosService: TodosService
+    private userService: UsersService
   ) {}
 
   assignUser(user: User) {
-    //console.log(user);
     this.dialogRef.close(user);
   }
 
   ngOnInit() {
-    this.todosService.userList().subscribe((data: User[]) => {
+    this.userService.userList().subscribe((data: User[]) => {
       console.log(data);
       this.dataSource = data;
     });
