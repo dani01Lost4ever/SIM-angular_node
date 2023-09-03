@@ -26,7 +26,7 @@ export class TodosComponent {
   public currentPage$ = new BehaviorSubject<number>(1);
   private todosPerPage = 16;
   private showCompleted: boolean = false;
-  private showExpired: boolean = false;
+  private showExpired: boolean = true;
   private totalTodos$ = new BehaviorSubject<number>(0);
   public totalPages$: Observable<number> = this.totalTodos$.pipe(
     map((totalTodos) => Math.ceil(totalTodos / this.todosPerPage)),
@@ -99,7 +99,7 @@ export class TodosComponent {
   previousPage() {
     if (this.currentPage$.value > 1) {
       this.currentPage$.next(this.currentPage$.value - 1);
-      console.log('trigger_PreviousPage');
+      //console.log('trigger_PreviousPage');
     }
   }
 
@@ -120,5 +120,29 @@ export class TodosComponent {
     dialogRef.afterClosed().subscribe(() => {
       this.handleRefreshList();
     });
+  }
+
+  handleUserSelected(data: any) {
+    this.todosSrv.assignTo(data.todoId!, data.selectedUser.id!).subscribe(
+      (response) => {
+        console.log('Response: ', response);
+        this.handleRefreshList();
+      },
+      (error) => {
+        console.log('Error: ', error);
+      }
+    );
+  }
+
+  handleTodoChecked(data: any) {
+    this.todosSrv.checkTodo(data.isChecked, data.todoId).subscribe(
+      (response) => {
+        console.log('Response: ', response);
+        this.handleRefreshList();
+      },
+      (error) => {
+        console.log('Error: ', error);
+      }
+    );
   }
 }
